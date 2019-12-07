@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ch">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no">
+        <title>{{ Title }}</title>
+        <script src="../static/js/jquery.min.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
+
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../static/css/common.css" />
+        <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="../static/css/flat-ui.min.css" />
+    </head>
+
+    <body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Manager system</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Main</a></li>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout">Logout</a></li>
+      </ul> </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div id="wrap">
+            <div>
+                <a class="toggle-btn" id="nimei">
+                    <i class="glyphicon glyphicon-align-justify"></i>
+                </a>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="sour">
+                        <div class="data-div">
+                            <div class="row tableHeader">
+                                {% for k in values[0] %}
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                        {{ k }}
+                                    </div>
+                                {% endfor %}
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    Operation
+                                </div>
+                            </div>
+                            <div class="tablebody">
+                                {% for k in values[1] %}
+                                    <div class="row">
+                                        {% for v in k %}
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 levl2 ">
+                                            {{ v }}
+                                        </div>
+                                        {% endfor %}
+
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addSource">Add Record</button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteSource">Delete Receord</button>
+                                        </div>
+                                    </div>
+                                 {% endfor %}
+                            </div>
+                        </div>
+                        <footer class="footer">
+                            <ul class="pagination">
+                                <li>
+                                    <select>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                    </select>
+                                    Page 
+                                </li>
+                                <li class="gray">
+                                    20 pages
+                                </li>
+                            </ul>
+                        </footer>
+                        <!--弹出窗口 添加资源-->
+                        <div class="modal fade" id="addSource" role="dialog" aria-labelledby="gridSystemModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="gridSystemModalLabel">Add Record</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <form class="form-horizontal">
+                                                {% for k in values[0] %}
+                                                <div class="form-group ">
+                                                    <label for="sName" class="col-xs-3 control-label">{{ k }}</label>
+                                                    <div class="col-xs-8 ">
+                                                        <input type="text" class="form-control input-sm duiqi" id="sName" name="{{ k }}" placeholder="{{ k }}">
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-xs btn-xs btn-green">Save</button>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+                        <!--弹出删除资源警告窗口-->
+                        <div class="modal fade" id="deleteSource" role="dialog" aria-labelledby="gridSystemModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="gridSystemModalLabel">Warning</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            Are you sure to delete?
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-xs btn-danger">Delete</button>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

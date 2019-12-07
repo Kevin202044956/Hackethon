@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>{{ Title }}</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="../static/css/reset.css">
+<link rel="stylesheet" type="text/css" href="../static/css/index.css">
+
+</head>
+<body style="background: #333333;">
+
+<div class="index-nav">
+	<div class="index-nav-frame clearfix">
+		<div class="nav-line">
+			
+		</div>
+		<div class="nav-small" tabindex="-1">
+			<div class="nav-small-focus" tabindex="-1">
+				
+			</div>
+			<img src="../static/images/icon.png">
+		</div>
+		<div class="index-nav-frame-line active" tabindex="-1">
+			Main
+		</div>
+		<div class="index-nav-frame-line" tabindex="-1">
+			Manage List
+			<div class="index-nav-frame-line-center">
+				<div class="index-nav-frame-line-li">
+					<a href="/Pinfo" style="color:black;" >Patient Info</a>
+				</div>
+                {% if role==1 %}
+				<div class="index-nav-frame-line-li">
+					<a href="/BHinfo" style="color:black;" >BeInHospital</a>
+				</div>
+				<div class="index-nav-frame-line-li">
+					<a href="/POinfo" style="color:black;" >Post Operation</a>
+				</div>
+                {% endif %}
+			</div>
+			<div class="index-nav-frame-line-focus" tabindex="-1"></div>
+		</div>
+		<div class="index-nav-frame-line" tabindex="-1">
+            <a href="/logout" style="color:black;" >Logout</a>
+		</div>
+	</div>
+</div>
+
+<div><h3 style="text-align: center;line-height: 50px;color: aliceblue;font-size: 18px">
+    Notice:<br>
+    Welcome Back
+    {% if role==1 %}
+          Doctor {{ username }}!
+        <hr>
+    Patient Info ==> Manage Patient Info<br>
+    BeInHospital ==> Manage who has been stayed in the hospital to do a operation<br>
+    Post Operation  ==> After operation which need to monitor their health<br><br><br>
+    {% else %}
+          Patient {{ username }}!
+    {% endif %}
+    <br>
+
+</h3></div>
+<hr>
+<div style="text-align:center;color: #eeeeee;font-size: medium">
+<p>All rights Reserved, by {{ Title }}</p>
+</div>
+</body>
+</html>
